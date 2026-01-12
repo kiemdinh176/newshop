@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",                 // hoặc ES2023, ES2024 tùy node version
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",     // ← sửa chỗ này
+    "baseUrl": "src",
+    "outDir": "dist",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "strict": true,                     // nên bật
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"]
+}
