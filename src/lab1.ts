@@ -1,0 +1,1 @@
+console.log('Lab 1 - TypeScript Setup Complete');
