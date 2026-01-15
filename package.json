@@ -24,5 +24,13 @@
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "express": "^5.2.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiemdinh176/newshop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kiemdinh176/newshop/issues"
+  },
+  "homepage": "https://github.com/kiemdinh176/newshop#readme"
 }
