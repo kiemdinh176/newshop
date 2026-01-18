@@ -1,7 +1,7 @@
 {
   "name": "newweb",
   "version": "1.0.0",
-  "description": "",
+  "description": "lam-asm-gd-gd1",
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
