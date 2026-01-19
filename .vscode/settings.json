@@ -1,8 +1,0 @@
-{
-    "mdb.presetConnections": [
-        {
-            "name": "Kết Nối Thành Công",
-            "connectionString": "mongodb://localhost:27017"
-        }
-    ]
-}
