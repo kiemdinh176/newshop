@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Profile | NewShop</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<button onclick="toggleDarkMode()">🌙</button>
+
+<div id="loading" class="loading">
+  <div class="spinner"></div>
+</div>
+
+<script src="js/ui.js"></script>
+
+<body>
+
+  <div class="profile-container">
+    <h1>👤 Hồ sơ cá nhân</h1>
+
+        <div id="profile-box" class="profile-box">
+        <p><b>Tên:</b> <span id="name"></span></p>
+        <p><b>Email:</b> <span id="email"></span></p>
+        <p><b>SĐT:</b> <span id="phone"></span></p>
+        <p><b>Role:</b> <span id="role"></span></p>
+        </div>
+
+    <button onclick="logout()" class="btn-danger">Đăng xuất</button>
+    <button onclick="window.location.href='edit-profile.html'" class="btn-primary">Chỉnh sửa hồ sơ</button>
+    <button onclick="window.location.href='change-password.html'" class="btn-primary">Đổi mật khẩu</button>
+    <button onclick="window.location.href='index.html'" class="btn-primary">Trở về trang chủ</button>
+  </div>
+
+  <script src="./js/api.js"></script>
+  <script src="./js/profile.js"></script>
+</body>
+</html>

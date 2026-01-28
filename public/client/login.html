@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Đăng nhập – NewShop</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<button onclick="toggleDarkMode()">🌙</button>
+
+<div id="loading" class="loading">
+  <div class="spinner"></div>
+</div>
+
+<script src="js/ui.js"></script>
+
+<body>
+
+<div class="auth-box">
+  <h2>🔐 Đăng nhập</h2>
+
+  <form id="loginForm">
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Mật khẩu" required>
+    <button type="submit">Đăng nhập</button>
+  </form>
+
+  <p>Chưa có tài khoản? <a href="register.html">Đăng ký</a></p>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./js/api.js"></script>
+<script src="./js/auth.js"></script>
+</body>
+</html>

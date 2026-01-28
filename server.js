@@ -14,6 +14,7 @@ const categoryRoutes = require('./routes/categoryRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const lessonRoutes = require('./routes/lessonRoutes');
 const enrollmentRoutes = require('./routes/enrollmentRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,8 +25,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // 👉 Serve static frontend
-app.use(express.static('public'));
-
+app.use(express.static('public'));        
+                                               
 // 👉 Trang giới thiệu API
 app.get('/', (req, res) => {
   res.json({
@@ -38,6 +39,7 @@ app.get('/', (req, res) => {
       courses: '/api/courses',
       lessons: '/api/lessons',
       enrollments: '/api/enrollments',
+      riviu: '/api/reviews',
       admin: '/admin'
     }
   });
@@ -49,7 +51,7 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/courses', courseRoutes);
 app.use('/api/lessons', lessonRoutes);
 app.use('/api/enrollments', enrollmentRoutes);
-
+app.use('/api/reviews', reviewRoutes);
 // 👉 Admin fallback (nếu là SPA)
 app.get('/admin/*', (req, res) => {
   res.sendFile(__dirname + '/public/admin/index.html');

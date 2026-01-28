@@ -1,0 +1,469 @@
+/* GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary: #3b82f6; /* Blue 500 */
+    --primary-hover: #2563eb;
+    --bg-main: #f8fafc; /* Slate 50 */
+    --bg-card: #ffffff;
+    --text-main: #1e293b; /* Slate 800 */
+    --text-muted: #64748b; /* Slate 500 */
+    --border: #e2e8f0; /* Slate 200 */
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --radius: 12px;
+}
+
+.dark-mode {
+    --bg-main: #0f172a; /* Slate 900 */
+    --bg-card: #1e293b; /* Slate 800 */
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --border: #334155;
+    --shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    transition: background 0.3s, color 0.3s;
+    line-height: 1.5;
+}
+
+/* NAVBAR */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    gap: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: var(--primary);
+}
+
+/* BUTTONS (TAILWIND STYLE) */
+button {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-main);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background: var(--bg-main);
+    border-color: var(--text-muted);
+}
+
+/* Đăng xuất / Primary Button */
+button[onclick="logout()"], .btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+}
+
+button[onclick="logout()"]:hover, .btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+/* DARK MODE TOGGLE */
+button[onclick="toggleDarkMode()"] {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+/* COURSE GRID */
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* COURSE CARD */
+.course-card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.course-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #e2e8f0;
+}
+
+.course-card .p-4 {
+    padding: 1.25rem;
+}
+
+.course-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.course-card .price {
+    color: var(--primary);
+    font-size: 1.25rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+/* CATEGORY NAV */
+.category-nav {
+    padding: 2rem 0;
+    background: var(--bg-main);
+}
+
+.categories {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.categories button.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+/* SECTION TITLES */
+h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* LOADING SPINNER */
+.loading {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-main);
+    display: none; /* Hiện bằng JS */
+    place-items: center;
+    z-index: 1000;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--border);
+    border-top: 4px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+.section-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-header span {
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    margin-top: 5px;
+    color: var(--text-main);
+}
+h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 40px 0;
+    background: linear-gradient(to right, var(--primary), #a855f7); /* Blue to Purple */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+h2 {
+    font-size: 1.875rem; /* ~30px */
+    font-weight: 700;
+    color: var(--text-main);
+    text-align: center;
+    margin: 3rem 0 1.5rem 0;
+    position: relative;
+    letter-spacing: -0.025em;
+}
+
+/* Thanh gạch chân trang trí */
+h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 2px;
+    margin: 10px auto 0;
+}
+/* Container bao quanh lời chào */
+#user-info span {
+    display: inline-flex;
+    align-items: center;
+    color: #64748b; /* Màu xám Slate nhẹ */
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Phần tên được in đậm */
+#user-info b {
+    color: #123456; /* Màu xanh của ông */
+    margin-left: 5px;
+    font-weight: 700;
+    position: relative;
+}
+
+/* Hiệu ứng gạch chân nhẹ dưới tên cho sang */
+#user-info b::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(18, 52, 86, 0.2);
+    border-radius: 2px;
+}
+.dark-mode #user-info span {
+    color: #cbd5e1;
+}
+
+.dark-mode #user-info b {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+/* Container bao quanh toàn bộ lời chào */
+#user-info span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Khoảng cách giữa chữ và chấm online */
+    background-color: #ffffff;
+    color: #475569; /* Màu xám Slate cho chữ "Chào Anh" */
+    padding: 6px 16px;
+    border-radius: 9999px; /* Bo tròn hoàn toàn kiểu Tailwind */
+    border: 1px solid #e2e8f0;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+/* Hiệu ứng khi di chuột vào lời chào */
+#user-info span:hover {
+    border-color: #123456; /* Màu xanh của ông */
+    background-color: #f8fafc;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(18, 52, 86, 0.1);
+}
+
+/* Phần tên User được in đậm */
+#user-info b {
+    color: #123456; /* Màu xanh Navy thương hiệu của ông */
+    font-weight: 700;
+    text-transform: capitalize; /* Viết hoa chữ cái đầu cho đẹp */
+}
+
+/* Thêm một cái chấm xanh "Online" nhỏ phía trước cho nó xịn */
+#user-info span::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e; /* Màu xanh lá cây (Active) */
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+}
+/* Container của thẻ phải có relative để badge bám vào */
+.course-card {
+    position: relative;
+}
+
+.rank-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 20;
+    
+    /* Màu sắc & Kiểu dáng */
+    background-color: #123456; /* Màu Navy thương hiệu của ông */
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 8px; /* Bo góc kiểu hiện đại */
+    
+    /* Hiệu ứng nổi */
+    box-shadow: 0 4px 10px rgba(18, 52, 86, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px); /* Hiệu ứng mờ nền nhẹ nếu badge đè lên ảnh */
+    transition: all 0.3s ease;
+}
+
+/* Hiệu ứng đặc biệt cho Top 3 (Vàng - Bạc - Đồng) */
+/* Nếu ông muốn #1, #2, #3 nổi bật hơn hẳn */
+
+/* #1 - Màu Vàng Gold */
+.course-card:nth-child(1) .rank-badge {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5);
+}
+
+/* #2 - Màu Bạc Silver */
+.course-card:nth-child(2) .rank-badge {
+    background: linear-gradient(135deg, #94a3b8, #64748b);
+    box-shadow: 0 4px 15px rgba(148, 163, 184, 0.4);
+}
+
+/* #3 - Màu Đồng Bronze */
+.course-card:nth-child(3) .rank-badge {
+    background: linear-gradient(135deg, #b45309, #78350f);
+    box-shadow: 0 4px 15px rgba(180, 83, 9, 0.4);
+}
+
+/* Khi hover vào card, badge phóng to nhẹ */
+.course-card:hover .rank-badge {
+    transform: scale(1.1) rotate(-3deg);
+}
+/* Màu mặc định của nút */
+.categories button {
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* KHI NÚT ĐƯỢC CHỌN (ACTIVE) */
+.categories button.active {
+    background-color: #22c55e !important; /* Màu xanh lá nổi bật */
+    color: rgb(255, 255, 255) !important;
+    border-color: #22c55e !important;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+    transform: scale(1.05); /* Phóng to nhẹ nhìn cho phê */
+}
+/* --- DARK MODE CHO CATEGORIES --- */
+
+/* Khi body có class .dark-mode */
+.dark-mode .categories button {
+    background-color: #1e293b; /* Nền xám xanh đậm (Slate 800) */
+    color: #f1f5f9;           /* Chữ trắng xám cho nổi */
+    border-color: #334155;    /* Viền hơi sáng hơn nền một tí */
+}
+
+/* Hiệu ứng khi di chuột trong Dark Mode */
+.dark-mode .categories button:hover {
+    background-color: #334155; /* Sáng lên một chút */
+    color: #ffffff;
+    border-color: #475569;
+}
+
+/* QUAN TRỌNG: Giữ nút Active màu xanh lá nhưng phải rực rỡ trong bóng tối */
+.dark-mode .categories button.active {
+    background-color: #22c55e !important; /* Xanh lá Success */
+    color: #ffffff !important;
+    border-color: #22c55e !important;
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4); /* Đổ bóng xanh cho ảo diệu */
+}
+
+/* Fix luôn cái màu tiêu đề Danh mục cho nó đỡ bị chìm */
+.dark-mode .category-nav h2 {
+    color: #f1f5f9;
+}
+/* --- FIX USER STATUS TRONG DARK MODE --- */
+
+.dark-mode #user-info span {
+    background-color: #1e293b; /* Nền xám xanh đậm (Slate 800) */
+    color: #cbd5e1;           /* Chữ xám nhạt cho "Chào Anh" */
+    border-color: #334155;    /* Viền tối hơn */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode #user-info b {
+    color: #3b82f6;           /* Chuyển tên sang màu Xanh sáng (Blue 400) để không bị chìm */
+    text-shadow: 0 0 8px rgba(59, 130, 246, 0.3); /* Hiệu ứng phát sáng nhẹ cho tên */
+}
+
+/* Giữ nguyên cái chấm xanh Online nhưng cho nó sáng hơn */
+.dark-mode #user-info span::before {
+    background-color: #4ade80; 
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+}
+
+/* Nút Đăng xuất trong Dark Mode */
+.dark-mode #nav-logout {
+    background-color: #334155;
+    color: #f1f5f9;
+    border: 1px solid #475569;
+}
+
+.dark-mode #nav-logout:hover {
+    background-color: #ef4444; /* Khi di chuột vào thì hiện màu đỏ cho dễ nhận biết */
+    color: white;
+    border-color: #ef4444;
+}
+@keyframes spin { to { transform: rotate(360deg); } }

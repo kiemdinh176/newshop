@@ -122,3 +122,67 @@ exports.getProfile = async (req, res, next) => {
     next(error);
   }
 };
+// update pro5
+exports.updateProfile = async (req, res, next) => {
+  try {
+    const { name, phone } = req.body;
+
+    if (!name) {
+      return res.status(400).json({
+        success: false,
+        message: 'Tên không được để trống'
+      });
+    }
+
+    const user = await User.updateProfile(req.user.id, {
+      name,
+      phone
+    });
+
+    res.json({
+      success: true,
+      message: 'Cập nhật profile thành công',
+      data: user
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+// change password
+exports.changePassword = async (req, res, next) => {
+  try {
+    const { oldPassword, newPassword } = req.body;
+
+    if (!oldPassword || !newPassword) {
+      return res.status(400).json({
+        success: false,
+        message: 'Vui lòng nhập mật khẩu cũ và mật khẩu mới'
+      });
+    }
+
+    // Lấy user hiện tại (có password)
+    const user = await User.getByEmail(req.user.email);
+
+    const isMatch = await User.comparePassword(
+      oldPassword,
+      user.password
+    );
+
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        message: 'Mật khẩu cũ không đúng'
+      });
+    }
+
+    await User.updatePassword(req.user.id, newPassword);
+
+    res.json({
+      success: true,
+      message: 'Đổi mật khẩu thành công'
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+

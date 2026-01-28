@@ -19,7 +19,7 @@
 
     Lấy thông tin profile (JWT)
 
-    **Mã hóa mật khẩu với bcryptjs
+    Mã hóa mật khẩu với bcryptjs
 
 # 👤 USER
 

@@ -22,8 +22,7 @@ const User = {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const [result] = await pool.execute(
-      `INSERT INTO users 
-      (name, email, password, phone, role)
+      `INSERT INTO users (name, email, password, phone, role)
        VALUES (?, ?, ?, ?, 'student')`,
       [name, email, hashedPassword, phone]
     );
@@ -34,6 +33,26 @@ const User = {
       email,
       role: 'student'
     };
+  },
+
+  async updateProfile(id, { name, phone }) {
+    await pool.execute(
+      'UPDATE users SET name = ?, phone = ? WHERE id = ?',
+      [name, phone, id]
+    );
+
+    return this.getById(id);
+  },
+
+  async updatePassword(id, password) {
+    const hashed = await bcrypt.hash(password, 10);
+
+    await pool.execute(
+      'UPDATE users SET password = ? WHERE id = ?',
+      [hashed, id]
+    );
+
+    return true;
   },
 
   async comparePassword(password, hashedPassword) {

@@ -1,0 +1,62 @@
+  <!DOCTYPE html>
+  <html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <title>NewShop - Khóa học</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <button onclick="toggleDarkMode()">🌙</button>
+
+<div id="loading" class="loading">
+  <div class="spinner"></div>
+</div>
+
+<script src="js/ui.js"></script>
+
+  <body>
+
+  <h1> NewShop – Học Online</h1>
+     <nav>
+    <a href="index.html">Trang chủ</a>
+    <div id="user-info"></div>
+    
+   
+    
+    <!-- <a href="login.html" id="nav-login">Đăng nhập</a> -->
+    <!-- <a href="register.html" id="nav-register">Đăng ký</a> -->
+    
+    <a href="profile.html" id="nav-profile">Hồ sơ</a> 
+</nav>
+  <section class="top-courses">
+    <h2> Top 6 Khóa Học Hot Nhất</h2>
+    <div id="top-course-list" class="course-grid">
+
+        </div>
+</section>
+
+
+<nav class="category-nav">
+    <div id="category-list" class="categories">
+        <button class="active" onclick="loadAllCourses(event)">Tất cả</button>
+        </div>
+</nav>
+
+<section>
+  <div class="section-header">
+    <span>KHÁM PHÁ NGAY</span>
+    <h2> Lọc Theo Chủ Đề </h2>
+</div>
+    <div id="all-course-list" class="course-grid">
+        </div>
+</section>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/categories.js"></script>
+  <script src="js/lessons.js"></script>
+  <script src="js/enrollments.js"></script>
+  <script src="js/courses.js"></script>
+  </body>
+  </html>
